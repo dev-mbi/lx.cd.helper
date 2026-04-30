@@ -12,13 +12,13 @@ app.post("/api/command", async (req, res) => {
 
   try {
     const response = await axios.post(
-      "https://router.huggingface.co/v1/chat/completions",
+      "https://api.groq.com/openai/v1/chat/completions",
       {
-        model: "HuggingFaceH4/zephyr-7b-beta",
+        model: "llama3-8b-8192",
         messages: [
           {
             role: "system",
-            content: "You are a Linux expert. Return command and explanation."
+            content: "You are a Linux expert. Give command + explanation."
           },
           {
             role: "user",
@@ -28,24 +28,21 @@ app.post("/api/command", async (req, res) => {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.HF_TOKEN}`
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          "Content-Type": "application/json"
         }
       }
     );
 
-    const output = response.data.choices?.[0]?.message?.content;
-
+    const output = response.data.choices[0].message.content;
     res.json({ content: output });
 
   } catch (error) {
-    console.log("FULL ERROR:", error.response?.data || error.message);
-
-    res.json({
-      content: "❌ Error: " + (error.response?.data?.error?.message || error.message)
-    });
+    console.log(error.response?.data || error.message);
+    res.json({ content: "❌ Error getting response" });
   }
 });
 
 app.listen(3000, () => {
-  console.log("🚀 Server running at http://localhost:3000");
+  console.log("🚀 Running on http://localhost:3000");
 });
