@@ -14,7 +14,7 @@ app.post("/api/command", async (req, res) => {
     const response = await axios.post(
       "https://router.huggingface.co/v1/chat/completions",
       {
-        model: "deepseek-ai/DeepSeek-V4-Pro:novita",
+        model: "mistralai/Mistral-7B-Instruct-v0.2",
         messages: [
           {
             role: "system",
@@ -37,10 +37,11 @@ app.post("/api/command", async (req, res) => {
     res.json({ content: output });
 
   } catch (error) {
-    console.error(error.message);
-    res.status(500).send("Error");
+  console.error("FULL ERROR:", error.response?.data || error.message);
+  res.status(500).send("Error");
+}
   }
-});
+);
 
 app.listen(3000, () => {
   console.log("🚀 Server running at http://localhost:3000");
