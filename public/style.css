@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b1220;
+  color: white;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  width: 650px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CHAT BOX */
+.chat-box {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* MESSAGE */
+.msg {
+  padding: 12px 14px;
+  border-radius: 12px;
+  max-width: 80%;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* USER */
+.user {
+  background: #22c55e;
+  color: black;
+  align-self: flex-end;
+}
+
+/* BOT */
+.bot {
+  background: #1e293b;
+  border: 1px solid #334155;
+  align-self: flex-start;
+}
+
+/* INPUT AREA */
+.input-area {
+  display: flex;
+  padding: 12px;
+  background: #111827;
+  border-top: 1px solid #1f2937;
+  gap: 10px;
+}
+
+input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #0b1220;
+  color: white;
+}
+
+button {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #16a34a;
+}
+
+/* COPY BUTTON */
+.copy-btn {
+  margin-top: 5px;
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  color: #22c55e;
+  cursor: pointer;
+}

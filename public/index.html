@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Linux Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
 <body>
 
-<h1>🐧 AI Linux Command Helper</h1>
+<div class="container">
 
-<input id="input" placeholder="Type your problem">
-<button onclick="send()">Get Command</button>
+  <div id="chatBox" class="chat-box">
+    <div class="msg bot">
+      👋 Hi! Ask me any Linux command
+    </div>
+  </div>
 
-<div id="output"></div>
+  <div class="input-area">
+    <input id="input" placeholder="Type your question..." />
+    <button onclick="send()">➤</button>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
