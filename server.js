@@ -8,6 +8,7 @@ app.use(require("cors")());
 app.use(express.static("public"));
 
 app.post("/api/command", async (req, res) => {
+  console.log("USER INPUT:", req.body.message);
   const userInput = req.body.message;
 
   try {
@@ -37,8 +38,11 @@ app.post("/api/command", async (req, res) => {
     res.json({ content: output });
 
   } catch (error) {
-  console.error("FULL ERROR:", error.response?.data || error.message);
-  res.status(500).send("Error");
+  console.log("FULL ERROR:", error.response?.data || error.message);
+
+  res.json({
+    content: "❌ Error: " + (error.response?.data?.error?.message || error.message)
+  });
 }
   }
 );
