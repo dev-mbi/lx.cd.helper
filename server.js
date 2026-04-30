@@ -8,14 +8,13 @@ app.use(require("cors")());
 app.use(express.static("public"));
 
 app.post("/api/command", async (req, res) => {
-  console.log("USER INPUT:", req.body.message);
   const userInput = req.body.message;
 
   try {
     const response = await axios.post(
       "https://router.huggingface.co/v1/chat/completions",
       {
-        model: "mistralai/Mistral-7B-Instruct-v0.2",
+        model: "HuggingFaceH4/zephyr-7b-beta",
         messages: [
           {
             role: "system",
@@ -34,18 +33,18 @@ app.post("/api/command", async (req, res) => {
       }
     );
 
-    const output = response.data.choices[0].message.content;
+    const output = response.data.choices?.[0]?.message?.content;
+
     res.json({ content: output });
 
   } catch (error) {
-  console.log("FULL ERROR:", error.response?.data || error.message);
+    console.log("FULL ERROR:", error.response?.data || error.message);
 
-  res.json({
-    content: "❌ Error: " + (error.response?.data?.error?.message || error.message)
-  });
-}
+    res.json({
+      content: "❌ Error: " + (error.response?.data?.error?.message || error.message)
+    });
   }
-);
+});
 
 app.listen(3000, () => {
   console.log("🚀 Server running at http://localhost:3000");
