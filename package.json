@@ -7,7 +7,7 @@
     "start": "node server.js",
     "lint": "echo Lint Passed",
     "test": "echo Test Passed",
-    "build": "rm -rf dist && mkdir -p dist && cp -r . dist/ --exclude=dist"
+    "build": "rm -rf dist && mkdir -p dist && rsync -a --exclude='dist' ./ dist/"
   },
   "keywords": [
     "linux",
