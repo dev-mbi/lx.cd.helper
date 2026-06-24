@@ -7,7 +7,9 @@
     "start": "node server.js",
     "lint": "echo Lint Passed",
     "test": "echo Test Passed",
-    "build": "rm -rf dist && mkdir -p dist && rsync -a --exclude='dist' ./ dist/"
+    "build": "rm -rf dist && mkdir -p dist && rsync -a --exclude='dist' ./ dist/",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "keywords": [
     "linux",
@@ -21,5 +23,8 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.104.0"
   }
 }
