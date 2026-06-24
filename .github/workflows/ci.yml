@@ -133,4 +133,8 @@ jobs:
       - name: Create summary
         run: |
           echo "## Matrix Test Results" >> $GITHUB_STEP_SUMMARY
-          cat test-results/*.txt >> $GITHUB_STEP_SUMMARY
+          if compgen -G "test-results/*.txt" > /dev/null; then
+            cat test-results/*.txt >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No test results found" >> $GITHUB_STEP_SUMMARY
+          fi
